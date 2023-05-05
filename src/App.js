@@ -1,8 +1,9 @@
-import './App.css'
-import Campanha from './components/Campanha'
-import ComponenteTexto from './components/ComponenteTexto'
-import CssInline from './components/CssInline'
-import FormularioDeContato from './components/FormularioDeContato'
+// import './App.css'
+import Alunos from './components/alunos/Alunos'
+// import Campanha from './components/campanha/Campanha.jsx'
+// import ComponenteTexto from './components/componenteTexto/ComponenteTexto.jsx'
+// import CssInline from './components/CssInline'
+// import FormularioDeContato from './components/form/FormularioDeContato.jsx'
 
 
 function App() {
@@ -10,10 +11,7 @@ function App() {
   
   return (
     <div className='App'>
-      <ComponenteTexto></ComponenteTexto>
-      <CssInline></CssInline>
-      <Campanha mes='Outubro'></Campanha>
-      <FormularioDeContato></FormularioDeContato>
+      <Alunos></Alunos>
     </div>
   )
 }
