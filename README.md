@@ -1,6 +1,6 @@
 # Desenvolvimento de aplicações corporativas
 
-Disciplina do curso Sistemas para Internet 
+Front end para o backend Aluno Online https://github.com/gabrielcarlossl/aluno-online
 
 ## Available Scripts
 
