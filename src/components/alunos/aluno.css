@@ -1,0 +1,27 @@
+table{
+    margin-bottom: 30px;
+    margin: 10px 10px 30px 10px;
+}
+th{
+    padding: 5px;
+}
+td {
+    text-align: center;
+    padding: 10px;
+}
+form{
+    margin: 10px;
+}
+form > button{
+    margin: 10px;
+}
+input{
+    margin: 10px;
+}
+.nome{
+    text-align: left;
+}
+.email{
+    text-align: left;
+    padding: 5px 20px;
+}
