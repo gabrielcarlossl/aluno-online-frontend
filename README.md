@@ -1,6 +1,5 @@
 # Desenvolvimento de aplicações corporativas
-
-Front end para o backend Aluno Online https://github.com/gabrielcarlossl/aluno-online
+- Front end para o backend Aluno Online https://github.com/gabrielcarlossl/aluno-online
 
 ## Available Scripts
 
