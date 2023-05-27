@@ -3,12 +3,12 @@ import './aluno.css'
 import DeleteIcon from '@mui/icons-material/Delete';
 import axios from 'axios';
 
-const EndPointBackEndSpring = 'http://localhost:8080/aluno'
+const EndPointBackEndAluno = 'http://localhost:8080/aluno'
 const EndpointSpringBase = 'http://localhost:8080'
 
 const Alunos = () => {
 
-    const [alunosData, setAlunosData] = useState([]);
+    const [alunosData, setAlunosData] = useState([])
     const [nome, setNome] = useState("")
     const [email, setEmail] = useState("")
     const [curso, setCurso] = useState("")
@@ -27,9 +27,8 @@ const Alunos = () => {
 
 
     const serviceDelete = async (id) => {
-        console.log(id)
         try {
-          await axios.delete(`${EndPointBackEndSpring}/${id}`);
+          await axios.delete(`${EndPointBackEndAluno}/${id}`);
           // eslint-disable-next-line no-restricted-globals
           location.reload();
         } catch (error) {
@@ -44,7 +43,7 @@ const Alunos = () => {
             email,
             curso
         }
-        const response = await fetch(EndPointBackEndSpring, {
+        const response = await fetch(EndPointBackEndAluno, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
