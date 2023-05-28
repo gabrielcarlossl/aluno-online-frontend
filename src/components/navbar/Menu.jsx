@@ -17,6 +17,7 @@ const Menu = () => {
                     <Link className='link' to='/Alunos'>Alunos</Link>
                     <Link className='link' to='/professores'>Professores</Link>
                     <Link className='link' to='/disciplinas'>Disciplinas</Link>
+                    <Link className='link' to='/historico'>Historico</Link>
                 </div>
             </div>
             <hr />
