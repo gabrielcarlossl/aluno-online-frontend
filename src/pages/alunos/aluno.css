@@ -74,5 +74,10 @@ input:hover{
     font-size: 15px;
     font-weight: bold;
     border-radius: 15px;
-    border: none;
+    border: 1px solid black;
+    cursor: pointer;
+}
+.enviar:hover{
+    background-color: rgba(117, 250, 255, 0.26);
+
 }
