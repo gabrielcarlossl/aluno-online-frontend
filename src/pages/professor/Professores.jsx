@@ -1,24 +1,23 @@
 import React, { useEffect, useState } from 'react'
-import './aluno.css'
 import DeleteIcon from '@mui/icons-material/Delete';
 import axios from 'axios';
+import { EndpointSpringBase } from '../../constants/conts';
 
-const EndPointBackEndAluno = 'http://localhost:8080/aluno'
-const EndpointSpringBase = 'http://localhost:8080'
 
-const Alunos = () => {
 
-    const [alunosData, setAlunosData] = useState([])
-    const [nome, setNome] = useState("")
-    const [email, setEmail] = useState("")
-    const [curso, setCurso] = useState("")
+const Professores = () => {
+
+    const [professorData, setProfessorData] = useState([])
+    const [nome, setNome] = useState('')
+    const [email, setEmail] = useState('')
+
 
     useEffect(() => {
         async function fetchData() {
-            const res = await fetch(`${EndpointSpringBase}/aluno/all`)
+            const res = await fetch(`${EndpointSpringBase}/professor/all`)
 
             const data = await res.json()
-            setAlunosData(data)
+            setProfessorData(data)
 
         }
         fetchData()
@@ -28,7 +27,7 @@ const Alunos = () => {
 
     const serviceDelete = async (id) => {
         try {
-          await axios.delete(`${EndPointBackEndAluno}/${id}`);
+          await axios.delete(`${EndpointSpringBase}/professor/${id}`);
           // eslint-disable-next-line no-restricted-globals
           location.reload();
         } catch (error) {
@@ -38,51 +37,48 @@ const Alunos = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const addAluno = {
+        const addProfessor = {
             nome,
-            email,
-            curso
+            email
         }
-        const response = await fetch(EndPointBackEndAluno, {
+        const response = await fetch(`${EndpointSpringBase}/professor`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(addAluno)
+            body: JSON.stringify(addProfessor)
         })
 
-        const addedAlunos = await response.json()
+        const addedProfessor = await response.json()
 
-        setAlunosData((prevAlunos) => [...prevAlunos, addedAlunos])
+        setProfessorData((prevProfessor) => [...prevProfessor, addedProfessor])
         setNome('')
         setEmail('')
-        setCurso('')
     }
 
     return (
-        <div>
+        <div className='alunoContainer'>
 
-            <h1>Alunos</h1>
+            <h1>Professores</h1>
 
             <div className='container'>
 
                 <table cellSpacing={5}>
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Nome</th>
                             <th>Email</th>
-                            <th>Curso</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {alunosData.map((aluno) => (
-                            <tr key={aluno.id}>
-                                {console.log(aluno)}
-                                <td className='nome'>{aluno.nome}</td>
-                                <td className='email'>{aluno.email}</td>
-                                <td>{aluno.curso}</td>
-                                <td><button onClick={() => serviceDelete(aluno.id)} className='error'><DeleteIcon></DeleteIcon></button></td>
+                        {professorData.map((professor) => (
+                            <tr key={professor.id}>
+                                <td>{professor.id}</td>
+                                <td className='nome'>{professor.nome}</td>
+                                <td className='email'>{professor.email}</td>
+                                <td><button onClick={() => serviceDelete(professor.id)} className='error'><DeleteIcon></DeleteIcon></button></td>
                             </tr>
                         ))}
                     </tbody>
@@ -96,29 +92,18 @@ const Alunos = () => {
                             value={nome}
                             onChange={(event) => setNome(event.target.value)}
                             required
-                            placeholder='Digite o nome do aluno'
+                            placeholder='Digite o nome do professor'
                         />
                     </label>
                     <br />
                     <label>
                         Email:
                         <input
-                            placeholder='Digite o email do aluno'
+                            placeholder='Digite o email do professor'
                             required
                             type="email"
                             value={email}
                             onChange={(event) => setEmail(event.target.value)}
-                        />
-                    </label>
-                    <br />
-                    <label>
-                        Curso:
-                        <input
-                            placeholder='Digite o curso do aluno'
-                            type="text"
-                            value={curso}
-                            onChange={(event) => setCurso(event.target.value)}
-                            required
                         />
                     </label>
                     <br />
@@ -129,4 +114,4 @@ const Alunos = () => {
     )
 }
 
-export default Alunos
+export default Professores

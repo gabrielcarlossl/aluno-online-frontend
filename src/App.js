@@ -1,9 +1,8 @@
-// import './App.css'
-import Alunos from './components/alunos/Alunos'
-// import Campanha from './components/campanha/Campanha.jsx'
-// import ComponenteTexto from './components/componenteTexto/ComponenteTexto.jsx'
-// import CssInline from './components/CssInline'
-// import FormularioDeContato from './components/form/FormularioDeContato.jsx'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Alunos from './pages/alunos/Alunos'
+import Menu from './components/navbar/Menu'
+import Home from './pages/home/Home.jsx'
+import Professores from './pages/professor/Professores'
 
 
 function App() {
@@ -11,7 +10,14 @@ function App() {
   
   return (
     <div className='App'>
-      <Alunos></Alunos>
+      <BrowserRouter>
+        <Menu></Menu>
+        <Routes>
+          <Route path='/' element={<Home></Home>}></Route>
+          <Route path='/alunos' element={<Alunos></Alunos>}></Route>
+          <Route path='/professores' element={<Professores></Professores>}></Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   )
 }

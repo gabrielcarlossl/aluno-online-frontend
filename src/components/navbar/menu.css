@@ -1,0 +1,29 @@
+.link{
+    text-decoration: none;
+    color: black;
+    padding: 8px;
+    border-radius: 8px;
+    margin: 0 70px;
+    font-size: 20px;
+    font-weight: 600;
+}
+.link:hover{
+    text-decoration: underline;
+    
+}
+.links{
+    display: flex;
+}
+.logo{
+    margin-left: 20px;
+}
+.menu-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.alunoOnline{
+    margin-left: 20px;
+    font-weight: 600;
+    font-size: 24px;
+}
