@@ -25,14 +25,14 @@ const Historico = () => {
     const renderizarLinhas = (disciplinas) => {
         return disciplinas.map((disciplina, index) => (
             <tr key={index}>
-                {console.log(disciplina)}
-                <td>{disciplina.nomeAluno}</td>
-                <td>{disciplina.cursoAluno}</td>
+                {console.log(historicoData)}
+                <td>{historicoData[0].nomeAluno}</td>
+                <td>{historicoData[0].cursoAluno}</td>
                 <td>{disciplina.nomeDisciplina}</td>
                 <td>{disciplina.professorDisciplina}</td>
-                <td>{disciplina.nota1}</td>
-                <td>{disciplina.nota2}</td>
-                <td>{disciplina.media}</td>
+                <td>{disciplina.nota1 === null ? 'Sem nota' : disciplina.nota1}</td>
+                <td>{disciplina.nota2 === null ? 'Sem nota' : disciplina.nota2}</td>
+                <td>{disciplina.media === null ? 'Sem média' : disciplina.media}</td>
                 <td>{disciplina.status}</td>
             </tr>
         ));
