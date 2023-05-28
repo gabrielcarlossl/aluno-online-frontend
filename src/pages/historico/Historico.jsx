@@ -53,9 +53,9 @@ const Historico = () => {
 
   return (
     <div>
-      <div className="container">
+      <div className="historicoTable">
         <h1>Histórico do Aluno</h1>
-        <div className="historicoContainer">
+        <div style={{display: 'flex', justifyContent: 'center'}} className="historicoContainer">
           {historicoData.length > 0 && (
             <table cellSpacing={5}>
               <thead>

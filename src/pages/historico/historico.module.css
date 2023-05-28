@@ -45,7 +45,7 @@ input{
 input:hover{
     opacity: 0.5;
 }
-.container{
+.historicoTable{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -54,9 +54,7 @@ input:hover{
 }
 .historicoContainer{
     display: flex;
-    flex-direction: column;
-
-
+    justify-content: center;
 }
 .nome{
     text-align: left;
