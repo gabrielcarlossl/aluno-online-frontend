@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { EndpointSpringBase } from '../../constants/conts'
 import './historico.module.css'
 
