@@ -6,6 +6,7 @@ table{
     margin: 10px 10px 30px 10px;
     background-color: azure;
     border-radius: 3px;
+    border: 1px solid black;
 }
 th{
     background-color: darkcyan;
