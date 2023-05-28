@@ -33,7 +33,7 @@ const Alunos = () => {
           // eslint-disable-next-line no-restricted-globals
           location.reload();
         } catch (error) {
-            console.error("Erro ao excluir o item: ", error)
+            alert("Não é possível remover aluno que está matriculado.")
         }
       };
 
