@@ -10,7 +10,10 @@ const Professores = () => {
     const [professorData, setProfessorData] = useState([])
     const [nome, setNome] = useState('')
     const [email, setEmail] = useState('')
-
+    const [nota1, setNota1] = useState()
+    const [nota2, setNota2] = useState()
+    const [id, setId] = useState()
+    const [notasData, setNotasData] = useState()
 
     useEffect(() => {
         async function fetchData() {
@@ -27,13 +30,13 @@ const Professores = () => {
 
     const serviceDelete = async (id) => {
         try {
-          await axios.delete(`${EndpointSpringBase}/professor/${id}`);
-          // eslint-disable-next-line no-restricted-globals
-          location.reload();
+            await axios.delete(`${EndpointSpringBase}/professor/${id}`);
+            // eslint-disable-next-line no-restricted-globals
+            location.reload();
         } catch (error) {
             alert("Não é possível remover professor que dá aula para alguma disciplina.\n \n Remova primeiro a disciplina que ele da aula, na tela Disciplinas.")
         }
-      };
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -55,13 +58,33 @@ const Professores = () => {
         setNome('')
         setEmail('')
     }
+    const handleSubmitPatchNota = async (event) => {
+        event.preventDefault();
+        const addNotas = {
+            nota1,
+            nota2,
+
+        }
+        const response = await fetch(`${EndpointSpringBase}/matricula-aluno/update-grades/${id}`, {
+            method: 'PATCH',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(addNotas)
+        })
+        alert('Notas atualizadas com sucesso!')
+
+        const addedNotas = await response.json()
+        setNotasData((prevNotas) => [...prevNotas, addedNotas])
+
+    }
 
     return (
         <div className='alunoContainer'>
 
             <h1>Professores</h1>
 
-            <div className='container'>
+            <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' }} className='container'>
 
                 <table cellSpacing={5}>
                     <thead>
@@ -84,31 +107,72 @@ const Professores = () => {
                     </tbody>
                 </table>
 
-                <form onSubmit={handleSubmit}>
-                    <label>
-                        Nome:
-                        <input
-                            type="text"
-                            value={nome}
-                            onChange={(event) => setNome(event.target.value)}
-                            required
-                            placeholder='Digite o nome do professor'
-                        />
-                    </label>
-                    <br />
-                    <label>
-                        Email:
-                        <input
-                            placeholder='Digite o email do professor'
-                            required
-                            type="email"
-                            value={email}
-                            onChange={(event) => setEmail(event.target.value)}
-                        />
-                    </label>
-                    <br />
-                    <button className='enviar' type="submit">Enviar</button>
-                </form>
+                <div style={{display: 'flex'}}>
+                    <form onSubmit={handleSubmit}>
+                        <h3>Cadastrar Professores</h3>
+                        <label>
+                            Nome:
+                            <input
+                                type="text"
+                                value={nome}
+                                onChange={(event) => setNome(event.target.value)}
+                                required
+                                placeholder='Digite o nome do professor'
+                            />
+                        </label>
+                        <br />
+                        <label>
+                            Email:
+                            <input
+                                placeholder='Digite o email do professor'
+                                required
+                                type="email"
+                                value={email}
+                                onChange={(event) => setEmail(event.target.value)}
+                            />
+                        </label>
+                        <br />
+                        <button className='enviar' type="submit">Enviar</button>
+                    </form>
+
+                    <form onSubmit={handleSubmitPatchNota}>
+                        <h3>Atualizar Nota do Aluno</h3>
+                        <label>
+                            Primeira Nota:
+                            <input
+                                type="number"
+                                value={nota1}
+                                onChange={(event) => setNota1(event.target.value)}
+                                required
+                                placeholder='Digite a primeira nota'
+                            />
+                        </label>
+                        <br />
+                        <label>
+                            Segunda Nota:
+                            <input
+                                placeholder='Digite a segunda nota'
+                                required
+                                type="number"
+                                value={nota2}
+                                onChange={(event) => setNota2(event.target.value)}
+                            />
+                        </label>
+                        <br />
+                        <label>
+                            Id da matricula do aluno:
+                            <input
+                                placeholder='Digite o id da matricula'
+                                required
+                                type="number"
+                                value={id}
+                                onChange={(event) => setId(event.target.value)}
+                            />
+                        </label>
+                        <br />
+                        <button className='enviar' type="submit">Enviar</button>
+                    </form>
+                </div>
             </div>
         </div>
     )
