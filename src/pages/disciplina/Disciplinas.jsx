@@ -7,7 +7,7 @@ const Disciplinas = () => {
   
     const [disciplinaData, setDisciplinaData] = useState([])
     const [nome, setNome] = useState('')
-    const [id, setId] = useState()
+    const [idProfessor, setIdProfessor] = useState()
 
 
     useEffect(() => {
@@ -23,9 +23,9 @@ const Disciplinas = () => {
 
 
 
-    const serviceDelete = async (id) => {
+    const serviceDelete = async (idProfessor) => {
         try {
-          await axios.delete(`${EndpointSpringBase}/disciplina/${id}`);
+          await axios.delete(`${EndpointSpringBase}/disciplina/${idProfessor}`);
           // eslint-disable-next-line no-restricted-globals
           location.reload();
         } catch (error) {
@@ -38,7 +38,7 @@ const Disciplinas = () => {
         const addDisciplina = {
             nome,
             professor:{
-                id
+                id: idProfessor
             }
         }
         const response = await fetch(`${EndpointSpringBase}/disciplina`, {
@@ -53,7 +53,7 @@ const Disciplinas = () => {
 
         setDisciplinaData((prevDisciplina) => [...prevDisciplina, addedDisciplina])
         setNome()
-        setId()
+        setIdProfessor()
         // eslint-disable-next-line no-restricted-globals
         location.reload();
     }
@@ -88,6 +88,7 @@ const Disciplinas = () => {
                 </table>
 
                 <form onSubmit={handleSubmit}>
+                    <h3>Cadastrar Disciplinas</h3>
                     <label>
                         Nome:
                         <input
@@ -100,13 +101,13 @@ const Disciplinas = () => {
                     </label>
                     <br />
                     <label>
-                        Id:
+                        Id do Professor:
                         <input
                             placeholder='Digite o id do professor'
                             required
                             type="number"
-                            value={id}
-                            onChange={(event) => setId(event.target.value)}
+                            value={idProfessor}
+                            onChange={(event) => setIdProfessor(event.target.value)}
                         />
                     </label>
                     <br />
