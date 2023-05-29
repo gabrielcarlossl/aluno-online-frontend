@@ -78,7 +78,6 @@ const Disciplinas = () => {
                         {disciplinaData.map((disciplina) => (
                             <tr key={disciplina.id}>
                                 <td>{disciplina.id}</td>
-                                {console.log(disciplina)}
                                 <td className='nome'>{disciplina.nome}</td>
                                 <td className='email'>{disciplina.professor?.nome}</td>
                                 <td><button onClick={() => serviceDelete(disciplina.id)} className='error'><DeleteIcon></DeleteIcon></button></td>
