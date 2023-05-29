@@ -32,9 +32,9 @@ const Historico = () => {
   };
 
   const renderizarLinhas = (disciplinas) => {
-    console.log('disciplinas', disciplinas);
     return disciplinas.map((disciplina, index) => (
       <tr key={index}>
+      <td>{disciplina.id}</td>
         <td>
           {historicoData[0]?.error === 'Not Found' ? 'Sem dados' : historicoData[0]?.nomeAluno}
         </td>
@@ -55,11 +55,12 @@ const Historico = () => {
     <div>
       <div className="historicoTable">
         <h1>Histórico do Aluno</h1>
-        <div style={{display: 'flex', justifyContent: 'center'}} className="historicoContainer">
+        <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center'}} className="historicoContainer">
           {historicoData.length > 0 && (
             <table cellSpacing={5}>
               <thead>
                 <tr>
+                  <th>Matrícula Id</th>
                   <th>Nome</th>
                   <th>Curso</th>
                   <th>Disciplina</th>
@@ -74,6 +75,7 @@ const Historico = () => {
                 {historicoData.map((historico) => (
                   <>
                     <tr key={historico.disciplinasAlunoList.length}>
+                      <td>{historico.disciplinasAlunoList[0].id}</td>
                       <td>{historico.nomeAluno === null ? 'sem dados' : historico.nomeAluno}</td>
                       <td>{historico.cursoAluno === null ? 'sem dados' : historico.cursoAluno}</td>
                       <td>
@@ -87,18 +89,18 @@ const Historico = () => {
                           : historico.disciplinasAlunoList[0]?.professorDisciplina}
                       </td>
                       <td>
-                        {historico.disciplinasAlunoList[0]?.error === 'Not Found'
-                          ? 'Sem dados'
+                        {historico.disciplinasAlunoList[0]?.nota1 === null
+                          ? 'Sem nota'
                           : historico.disciplinasAlunoList[0]?.nota1}
                       </td>
                       <td>
-                        {historico.disciplinasAlunoList[0]?.error === 'Not Found'
-                          ? 'Sem dados'
+                        {historico.disciplinasAlunoList[0]?.nota2 === null
+                          ? 'Sem nota'
                           : historico.disciplinasAlunoList[0]?.nota2}
                       </td>
                       <td>
-                        {historico.disciplinasAlunoList[0]?.error === 'Not Found'
-                          ? 'Sem dados'
+                        {historico.disciplinasAlunoList[0]?.media === null
+                          ? 'Sem média'
                           : historico.disciplinasAlunoList[0]?.media}
                       </td>
                       <td>
@@ -113,7 +115,7 @@ const Historico = () => {
               </tbody>
             </table>
           )}
-          <form onSubmit={handleSubmit}>
+          <form className='historicoForm' onSubmit={handleSubmit}>
             <h3>Digite o ID do aluno para receber o histórico</h3>
             <label>
               Id:
