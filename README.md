@@ -1,6 +1,12 @@
-# Desenvolvimento de aplicações corporativas
-- Front end para o backend Aluno Online https://github.com/gabrielcarlossl/aluno-online
+# Aluno Online System
+- Student management system, grades, teachers, performs student, teacher, discipline, and grade registration, removes entries, views all registrations and student history, showing average, status, and also allows enrollment suspension.
 
+## Technologies
+- Redux-Saga
+- Redux-Form
+- Axios
+- Backend Java Spring Boot => https://github.com/gabrielcarlossl/aluno-online
+- Data Base with Postgre SQL
 ## Available Scripts
 
 ### `npm start`
