@@ -4,9 +4,12 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import axios from 'axios';
 import { EndPointBackEndAluno, EndpointSpringBase } from '../../constants/conts';
 
+import alunoForm from '../../components/form/alunoForm';
+import { registerAlunoRequest } from '../../redux/actions/alunoActions';
+import { connect } from 'react-redux';
+import AlunoForm from '../../components/form/alunoForm';
 
-
-const Alunos = () => {
+const Alunos = (props) => {
 
     const [alunosData, setAlunosData] = useState([])
     const [nome, setNome] = useState("")
@@ -16,6 +19,12 @@ const Alunos = () => {
     const [idDisciplina, setIdDisciplina] = useState()
     const [idMatricula, setIdMatricula] = useState()
 
+    const { registerAlunoRequest, loading, success, error} = props
+    const handleSubmit = (values) => {
+        registerAlunoRequest(values)
+        // eslint-disable-next-line no-restricted-globals
+        location.reload()
+    }
 
     useEffect(() => {
         async function fetchData() {
@@ -40,28 +49,28 @@ const Alunos = () => {
         }
     };
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        const addAluno = {
-            nome,
-            email,
-            curso
-        }
-        const response = await fetch(EndPointBackEndAluno, {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(addAluno)
-        })
+    // const handleSubmit = async (event) => {
+    //     event.preventDefault();
+    //     const addAluno = {
+    //         nome,
+    //         email,
+    //         curso
+    //     }
+    //     const response = await fetch(EndPointBackEndAluno, {
+    //         method: 'POST',
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         },
+    //         body: JSON.stringify(addAluno)
+    //     })
 
-        const addedAlunos = await response.json()
+    //     const addedAlunos = await response.json()
 
-        setAlunosData((prevAlunos) => [...prevAlunos, addedAlunos])
-        setNome('')
-        setEmail('')
-        setCurso('')
-    }
+    //     setAlunosData((prevAlunos) => [...prevAlunos, addedAlunos])
+    //     setNome('')
+    //     setEmail('')
+    //     setCurso('')
+    // }
 
     // status muda de matriculado para trancado
     const handleSubmitTrancar = async (event) => {
@@ -132,43 +141,14 @@ const Alunos = () => {
                 </table>
 
                 <div style={{display: 'flex'}}>
-                    <form onSubmit={handleSubmit}>
-                        <h3>Cadastrar Alunos</h3>
-                        <label>
-                            Nome:
-                            <input
-                                type="text"
-                                value={nome}
-                                onChange={(event) => setNome(event.target.value)}
-                                required
-                                placeholder='Digite o nome do aluno'
-                            />
-                        </label>
-                        <br />
-                        <label>
-                            Email:
-                            <input
-                                placeholder='Digite o email do aluno'
-                                required
-                                type="email"
-                                value={email}
-                                onChange={(event) => setEmail(event.target.value)}
-                            />
-                        </label>
-                        <br />
-                        <label>
-                            Curso:
-                            <input
-                                placeholder='Digite o curso do aluno'
-                                type="text"
-                                value={curso}
-                                onChange={(event) => setCurso(event.target.value)}
-                                required
-                            />
-                        </label>
-                        <br />
-                        <button className='enviar' type="submit">Enviar</button>
-                    </form>
+                    
+                    <div>
+                        <h1>Cadastrar Aluno:</h1>
+                        {loading && <p>Carregando...</p>}
+                        {success && <p>Aluno cadastrado com sucesso!</p>}
+                        {error && <p>Erro ao cadastrar o aluno. Erro: {error}</p>}
+                        <AlunoForm onSubmit={handleSubmit}></AlunoForm>
+                    </div>
 
                     <form onSubmit={handleSubmitMatricular}>
                         <h3>Realizar Matrícula em uma Disciplina</h3>
@@ -217,4 +197,14 @@ const Alunos = () => {
     )
 }
 
-export default Alunos
+const mapStateToProps = (state) => ({
+    loading: state.aluno.loading,
+    success: state.aluno.success,
+    error: state.aluno.error
+})
+
+const mapDispatchToProps ={
+    registerAlunoRequest
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Alunos)
