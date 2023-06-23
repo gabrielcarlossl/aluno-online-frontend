@@ -7,6 +7,17 @@ table{
     background-color: azure;
     border-radius: 3px;
 }
+button {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 2px solid black;
+    font-weight: bold;
+    cursor: pointer;
+}
+button:hover{
+    background-color: rgb(133, 183, 216);
+}
 th{
     background-color: darkcyan;
     padding: 5px;

@@ -6,7 +6,6 @@ const AlunoForm = (props) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <h2>Registrar Aluno</h2>
             <div>
                 <label htmlFor="nome">Nome:</label>
                 <Field name='nome' component='input' type='text'></Field>

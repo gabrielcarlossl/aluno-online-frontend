@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { EndpointSpringBase } from '../../constants/conts';
+import { EndpointSpringBase } from '../../utils/conts';
 import './historico.module.css';
 
 const Historico = () => {

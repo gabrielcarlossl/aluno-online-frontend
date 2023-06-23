@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import DeleteIcon from '@mui/icons-material/Delete';
 import axios from 'axios';
-import { EndpointSpringBase } from '../../constants/conts';
+import { EndpointSpringBase } from '../../utils/conts';
 
 
 

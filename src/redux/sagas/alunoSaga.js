@@ -1,7 +1,7 @@
 import {call, put, takeEvery } from 'redux-saga/effects'
-import { registerAlunoService } from '../service/alunoService'
-import { REGISTER_ALUNO_REQUEST } from '../types/types'
-import { registerAlunoSuccess, registerAlunoFailure } from '../actions/alunoActions'
+import { registerAlunoService, fetchAlunoService } from '../service/alunoService'
+import { REGISTER_ALUNO_REQUEST, FETCH_ALUNO_REQUEST } from '../types/types'
+import { registerAlunoSuccess, registerAlunoFailure, fetchAlunoSuccess, fetchAlunoFailure } from '../actions/alunoActions'
 
 function * registerAlunoSaga(action) {
     try {
@@ -12,6 +12,16 @@ function * registerAlunoSaga(action) {
     }
 }
 
+function * fetchAlunoSaga(){
+    try {
+        const alunos = yield call(fetchAlunoService)
+        yield put(fetchAlunoSuccess(alunos))
+    } catch (error) {
+        yield put(fetchAlunoFailure(error.message))
+    }
+}
+
 export default function * alunoSaga(){
     yield takeEvery(REGISTER_ALUNO_REQUEST, registerAlunoSaga)
+    yield takeEvery(FETCH_ALUNO_REQUEST, fetchAlunoSaga)
 }
