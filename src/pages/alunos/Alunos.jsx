@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './aluno.css'
-import { registerAlunoRequest, fetchAlunoRequest } from '../../redux/actions/alunoActions';
+import { registerAlunoRequest, fetchAlunoRequest, deleteAlunoRequest } from '../../redux/actions/alunoActions';
 import { connect } from 'react-redux';
 import AlunoForm from '../../components/form/alunoForm';
 import AlunoTable from '../../components/table/alunosTable';

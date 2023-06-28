@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { EndpointSpringBase } from '../../utils/conts'
 
 export const registerAlunoService = async (data) => {
@@ -31,5 +32,15 @@ export const fetchAlunoService = async () => {
     }
   } catch (error) {
     throw new Error(error.message)
+  }
+}
+
+export const deleteAlunoService = async (alunoId) => {
+
+  try {
+    await axios.delete(`${EndpointSpringBase}/aluno/${alunoId}`)
+    return Promise.resolve()
+  } catch (error) {
+    return Promise.reject(error)
   }
 }

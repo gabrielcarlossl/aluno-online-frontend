@@ -26,3 +26,16 @@ export const fetchAlunoFailure = (error) => ({
     type: types.FETCH_ALUNO_FAILURE,
     payload: error
 })
+
+export const deleteAlunoRequest = (alunoId) => ({
+    type: types.DELETE_ALUNO_REQUEST,
+    payload: alunoId
+})
+export const deleteAlunoSuccess = () => ({
+    type: types.DELETE_ALUNO_SUCCESS,
+    
+})
+export const deleteAlunoFailuere = (error) => ({
+    type: types.DELETE_ALUNO_FAILURE,
+    payload: error
+})

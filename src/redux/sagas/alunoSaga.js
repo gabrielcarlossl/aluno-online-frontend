@@ -1,7 +1,7 @@
-import {call, put, takeEvery } from 'redux-saga/effects'
-import { registerAlunoService, fetchAlunoService } from '../service/alunoService'
-import { REGISTER_ALUNO_REQUEST, FETCH_ALUNO_REQUEST } from '../types/types'
-import { registerAlunoSuccess, registerAlunoFailure, fetchAlunoSuccess, fetchAlunoFailure } from '../actions/alunoActions'
+import {call, put, takeEvery, takeLatest } from 'redux-saga/effects'
+import { registerAlunoService, fetchAlunoService, deleteAlunoService } from '../service/alunoService'
+import { REGISTER_ALUNO_REQUEST, FETCH_ALUNO_REQUEST, DELETE_ALUNO_REQUEST } from '../types/types'
+import { registerAlunoSuccess, registerAlunoFailure, fetchAlunoSuccess, fetchAlunoFailure, deleteAlunoRequest } from '../actions/alunoActions'
 
 function * registerAlunoSaga(action) {
     try {
@@ -21,7 +21,18 @@ function * fetchAlunoSaga(){
     }
 }
 
+function * deleteAlunoSaga(action) {
+    try {
+        yield call(deleteAlunoService, action.payload)
+        yield put(registerAlunoSuccess())
+    } catch (error) {
+        yield put(registerAlunoFailure(error.message))
+    }
+}
+
+// Exportar todas as sagas do ALUNO
 export default function * alunoSaga(){
     yield takeEvery(REGISTER_ALUNO_REQUEST, registerAlunoSaga)
     yield takeEvery(FETCH_ALUNO_REQUEST, fetchAlunoSaga)
+    yield takeLatest(DELETE_ALUNO_REQUEST, deleteAlunoSaga)
 }
