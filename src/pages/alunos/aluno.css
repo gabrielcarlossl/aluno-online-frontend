@@ -8,15 +8,15 @@ table{
     border-radius: 3px;
 }
 button {
-    padding: 10px;
+    padding: 3px;
     font-size: 14px;
     border-radius: 8px;
-    border: 2px solid black;
+    border: 1px solid black;
     font-weight: bold;
     cursor: pointer;
 }
 button:hover{
-    background-color: rgb(133, 183, 216);
+    background-color: rgb(133, 204, 216);
 }
 th{
     background-color: darkcyan;
@@ -54,12 +54,28 @@ input:hover{
 }
 .alunoContainer{
     justify-content: center;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+.message{
+    text-align: center;
+    padding: 20px;
+    margin: 20px;
+    background-color: rgb(150, 245, 150);
+    border-radius: 16px;
+}
+.errorMessage {
+    background-color: rgb(238, 128, 128);
 }
 .container{
     display: flex;
     margin-left: 20%;
     margin-right: 20%;
 
+}
+.error{
+    margin-right: 10px;
 }
 .nome{
     text-align: left;

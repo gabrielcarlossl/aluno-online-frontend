@@ -1,5 +1,6 @@
 import React from 'react';
 import DeleteIcon from '@mui/icons-material/Delete'
+import { Edit } from '@mui/icons-material';
 
 const AlunoTable = ({alunos}) =>{
     return (
@@ -21,7 +22,8 @@ const AlunoTable = ({alunos}) =>{
                         <td className='email'>{aluno.email}</td>
                         <td>{aluno.curso}</td>
                         <td>
-                            <button className='error'><DeleteIcon></DeleteIcon></button>
+                            <button className='error'><DeleteIcon style={{width: '20px'}}></DeleteIcon></button>
+                            <button><Edit style={{width: '20px'}}></Edit></button>
                         </td>
                     </tr>
                 ))}

@@ -80,101 +80,104 @@ const Professores = () => {
     }
 
     return (
-        <div className='alunoContainer'>
+        <>
 
             <h1>Professores</h1>
+            <div className='alunoContainer'>
 
-            <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' }} className='container'>
 
-                <table cellSpacing={5}>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nome</th>
-                            <th>Email</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {professorData.map((professor) => (
-                            <tr key={professor.id}>
-                                <td>{professor.id}</td>
-                                <td className='nome'>{professor.nome}</td>
-                                <td className='email'>{professor.email}</td>
-                                <td><button onClick={() => serviceDelete(professor.id)} className='error'><DeleteIcon></DeleteIcon></button></td>
+                <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' }} className='container'>
+
+                    <table cellSpacing={5}>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Email</th>
+                                <th>Ações</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {professorData.map((professor) => (
+                                <tr key={professor.id}>
+                                    <td>{professor.id}</td>
+                                    <td className='nome'>{professor.nome}</td>
+                                    <td className='email'>{professor.email}</td>
+                                    <td><button onClick={() => serviceDelete(professor.id)} className='error'><DeleteIcon></DeleteIcon></button></td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
 
-                <div style={{display: 'flex'}}>
-                    <form onSubmit={handleSubmit}>
-                        <h3>Cadastrar Professores</h3>
-                        <label>
-                            Nome:
-                            <input
-                                type="text"
-                                value={nome}
-                                onChange={(event) => setNome(event.target.value)}
-                                required
-                                placeholder='Digite o nome do professor'
-                            />
-                        </label>
-                        <br />
-                        <label>
-                            Email:
-                            <input
-                                placeholder='Digite o email do professor'
-                                required
-                                type="email"
-                                value={email}
-                                onChange={(event) => setEmail(event.target.value)}
-                            />
-                        </label>
-                        <br />
-                        <button className='enviar' type="submit">Enviar</button>
-                    </form>
+                    <div style={{ display: 'flex' }}>
+                        <form onSubmit={handleSubmit}>
+                            <h3>Cadastrar Professores</h3>
+                            <label>
+                                Nome:
+                                <input
+                                    type="text"
+                                    value={nome}
+                                    onChange={(event) => setNome(event.target.value)}
+                                    required
+                                    placeholder='Digite o nome do professor'
+                                />
+                            </label>
+                            <br />
+                            <label>
+                                Email:
+                                <input
+                                    placeholder='Digite o email do professor'
+                                    required
+                                    type="email"
+                                    value={email}
+                                    onChange={(event) => setEmail(event.target.value)}
+                                />
+                            </label>
+                            <br />
+                            <button className='enviar' type="submit">Enviar</button>
+                        </form>
 
-                    <form onSubmit={handleSubmitPatchNota}>
-                        <h3>Atualizar Nota do Aluno</h3>
-                        <label>
-                            Primeira Nota:
-                            <input
-                                type="number"
-                                value={nota1}
-                                onChange={(event) => setNota1(event.target.value)}
-                                required
-                                placeholder='Digite a primeira nota'
-                            />
-                        </label>
-                        <br />
-                        <label>
-                            Segunda Nota:
-                            <input
-                                placeholder='Digite a segunda nota'
-                                required
-                                type="number"
-                                value={nota2}
-                                onChange={(event) => setNota2(event.target.value)}
-                            />
-                        </label>
-                        <br />
-                        <label>
-                            Id da matricula do aluno:
-                            <input
-                                placeholder='Digite o id da matricula'
-                                required
-                                type="number"
-                                value={id}
-                                onChange={(event) => setId(event.target.value)}
-                            />
-                        </label>
-                        <br />
-                        <button className='enviar' type="submit">Enviar</button>
-                    </form>
+                        <form onSubmit={handleSubmitPatchNota}>
+                            <h3>Atualizar Nota do Aluno</h3>
+                            <label>
+                                Primeira Nota:
+                                <input
+                                    type="number"
+                                    value={nota1}
+                                    onChange={(event) => setNota1(event.target.value)}
+                                    required
+                                    placeholder='Digite a primeira nota'
+                                />
+                            </label>
+                            <br />
+                            <label>
+                                Segunda Nota:
+                                <input
+                                    placeholder='Digite a segunda nota'
+                                    required
+                                    type="number"
+                                    value={nota2}
+                                    onChange={(event) => setNota2(event.target.value)}
+                                />
+                            </label>
+                            <br />
+                            <label>
+                                Id da matricula do aluno:
+                                <input
+                                    placeholder='Digite o id da matricula'
+                                    required
+                                    type="number"
+                                    value={id}
+                                    onChange={(event) => setId(event.target.value)}
+                                />
+                            </label>
+                            <br />
+                            <button className='enviar' type="submit">Enviar</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 

@@ -6,10 +6,10 @@ import AlunoForm from '../../components/form/alunoForm';
 import AlunoTable from '../../components/table/alunosTable';
 
 const Alunos = (props) => {
-    
-    const { fetchAlunoRequest,registerAlunoRequest, loading, success, error, alunos} = props
 
-    useEffect(()=> {
+    const { fetchAlunoRequest, registerAlunoRequest, loading, success, error, alunos } = props
+
+    useEffect(() => {
         fetchAlunoRequest()
     }, [fetchAlunoRequest])
 
@@ -20,21 +20,23 @@ const Alunos = (props) => {
     }
 
     return (
-        <div className='alunoContainer'>
+        <>
+
             <h1>Alunos cadastrados</h1>
-            <AlunoTable alunos={alunos}></AlunoTable>
-                <div style={{display: 'flex'}}>
-                    
+            <div className='alunoContainer'>
+                <AlunoTable alunos={alunos}></AlunoTable>
+                <div style={{ display: 'flex' }}>
+
                     <div>
                         <h1>Cadastrar Aluno:</h1>
                         {loading && <p>Carregando...</p>}
-                        {success && <p>Aluno cadastrado com sucesso!</p>}
                         {error && <p>Erro ao cadastrar o aluno. Erro: {error}</p>}
                         <AlunoForm onSubmit={handleSubmit}></AlunoForm>
                     </div>
                 </div>
             </div>
-        
+        </>
+
     )
 }
 
@@ -45,7 +47,7 @@ const mapStateToProps = (state) => ({
     alunos: state.aluno.alunos
 })
 
-const mapDispatchToProps ={
+const mapDispatchToProps = {
     registerAlunoRequest,
     fetchAlunoRequest
 }
